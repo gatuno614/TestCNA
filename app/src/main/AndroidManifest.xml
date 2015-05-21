@@ -9,9 +9,14 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
+    <!--
+      IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
+      to match your app's package name + ".permission.C2D_MESSAGE".
+    -->
     <permission android:protectionLevel="signature"
         android:name="com.example.felix.testcna.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.example.felix.testcna.permission.C2D_MESSAGE" />
+
 
 
     <application
@@ -35,7 +40,6 @@
             android:name=".Test"
             android:label="@string/app_name" >
         </activity>
-
         <service android:name="com.parse.PushService" />
         <receiver android:name="com.parse.ParseBroadcastReceiver">
             <intent-filter>
@@ -43,9 +47,8 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name="com.example.felix.testcna.Receiver"
-            android:exported="false" >
+        <receiver android:name="com.parse.ParsePushBroadcastReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.parse.push.intent.RECEIVE" />
                 <action android:name="com.parse.push.intent.DELETE" />
@@ -57,6 +60,10 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <!--
+                  IMPORTANT: Change "com.parse.starter" to match your app's package name.
+                -->
                 <category android:name="com.example.felix.testcna" />
             </intent-filter>
         </receiver>
